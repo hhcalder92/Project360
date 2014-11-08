@@ -1,0 +1,74 @@
+<div class="col-xs-6">
+
+<h1>Hello!</h1>
+
+<h3>Welcome to <%= @user.name %>'s space!</h3>
+<br>
+
+<% if @current_user.id != @user.id %>
+
+	<% if @current_user.friendships.find_by_friend_id(@user.id) == nil %>
+
+	<form action="<%= friendships_url %>" method="POST">
+		<input type="hidden" name="friendship[friend_id]" value="<%= @user.id %>">
+		<input type="hidden" name="friendship[user_id]" value="<%= @current_user.id %>">
+	
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+	
+		<input type="submit" value="Add Friend">
+	</form>
+	
+	<% end %>
+	
+	
+<% else %>
+
+	Upload Image
+	<br>
+	<form action="<%= images_url %>" method="POST">
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+		<input type="text" name="image[url]">
+		<input type="submit" value="Add Image">
+	</form>
+
+<% end %>
+
+<h4>Email: <%= @user.email %></h4>
+<h4>Bio: <%= @user.bio %></h4>
+
+
+<h3>Added Friends</h3>
+
+<% if @user.friendships.length != 0 %>
+
+	<% @user.friendships.each do |friendship| %>
+
+		<% friend = User.find(friendship.friend_id) %>
+		<a href="<%= user_url(friend.id) %>">
+			<%= friend.name %>
+		</a>
+		<br>
+	<% end %>
+	
+<% else %>
+	
+	None
+	
+<% end %>
+
+<br>
+<br>
+
+
+
+</div>
+
+<div class="col-xs-6">
+	<br>
+	<br>
+	<br>
+	<h3>Images</h3>
+	<% @user.images.each do |image| %>
+		<img src="<%= image.url %>">
+	<% end %>
+</div>
