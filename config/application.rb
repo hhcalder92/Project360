@@ -9,7 +9,8 @@ Bundler.require(*Rails.groups)
 module Project360
   class Application < Rails::Application
     
-    config.filepicker_rails.api_key = "Your filepicker.io API Key"
+    config.filepicker_rails.api_key = "AfRIQClvBQGSW2DiojOaRz"
+    
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

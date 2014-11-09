@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141107015344) do
+ActiveRecord::Schema.define(version: 20141108213923) do
 
   create_table "friendships", force: true do |t|
     t.integer  "user_id",    null: false
@@ -24,14 +24,11 @@ ActiveRecord::Schema.define(version: 20141107015344) do
   add_index "friendships", ["user_id"], name: "index_friendships_on_user_id"
 
   create_table "images", force: true do |t|
-    t.integer  "user_id",    null: false
-    t.string   "url",        null: false
+    t.integer  "user_id",        null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "filepicker_url"
   end
-
-  add_index "images", ["url"], name: "index_images_on_url"
-  add_index "images", ["user_id"], name: "index_images_on_user_id", unique: true
 
   create_table "users", force: true do |t|
     t.string   "name",            null: false

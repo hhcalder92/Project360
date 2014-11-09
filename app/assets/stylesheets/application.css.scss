@@ -18,28 +18,55 @@
 @import "bootstrap";
 
 div.homepage {
-text-align: center;
-width: 400px;
 	margin: 0 auto;
+    font-family: "Courier New", Courier, monospace;
+	top: 60px;
+	
+	
+}
+
+div.left-panel {
+	box-shadow: 8px 0px 35px #BBB;
+	background-color: #ddffff;
+}
+
+div.right-panel {
 	
 
-		
+}
+
+nav.navbar {
+ border: 0.1px solid rgba(0, 0, 0, 0.3);
+	margin-bottom: 1px;
+
 }
 
 div.messages {
 	top: 40px;
 }
 
+div.left-side{
+	margin: 0 auto;
+}
 
 body {
-	/*background-color: #cccccc;*/
-    background-image: url("https://raw.githubusercontent.com/CSE360Fall2014/ImageSpace-Django/master/image_space_app/static/img/photographer.jpg");
+	background-color: #0;
 	
 }
 
 .navbar {
-	background-color: #44678D;
-	text-color: #EEEEEE;
-}
+	background-color: #FF0000;
+	height: 60px;
+    font-family: "Lucida Console", Times, monospace;
+	 border: 0.1px solid rgba(0, 0, 0, 0.3);
+    /* background-image: url("https://raw.githubusercontent.com/CSE360Fall2014/ImageSpace-Django/master/image_space_app/static/img/photographer.jpg");
+	 */
 
-
+	 }
+	 .navbar-header {
+	
+	font-size: 23px;
+    font-family: "Lucida Console", Times, monospace;
+	 box-shadow: inset 0 0 1em green-yellow;
+	 
+	 }

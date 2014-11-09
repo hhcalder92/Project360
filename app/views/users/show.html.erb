@@ -23,12 +23,24 @@
 	
 <% else %>
 
+	<%= link_to "Edit Profile", edit_user_url(@current_user), method: :get %>
+	<br>
+	<br>
+	
 	Upload Image
 	<br>
 	<form action="<%= images_url %>" method="POST">
 		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-		<input type="text" name="image[url]">
-		<input type="submit" value="Add Image">
+
+		<label for="filepicker_url">Upload Image</label>:
+		
+		<input type="hidden" name="image[user_id]" value="<%= current_user.id %>">
+
+		<input type="filepicker" data-fp-services="COMPUTER" data-fp-apikey="AfRIQClvBQGSW2DiojOaRz" name="image[filepicker_url]" id="filepicker_url"/>
+
+		<input type="submit" value="Submit">
+
+
 	</form>
 
 <% end %>
@@ -63,12 +75,70 @@
 
 </div>
 
+<!-- Load Feather code -->
+<script type="text/javascript" src="http://feather.aviary.com/js/feather.js"></script>
+
+<!-- Instantiate Feather -->
+<script type='text/javascript'>
+   var featherEditor = new Aviary.Feather({
+       apiKey: '7170b4686c0c56a7',
+       apiVersion: 3,
+       theme: 'dark', // Check out our new 'light' and 'dark' themes!
+       tools: 'all',
+       appendTo: '',
+       onSave: function(imageID, newURL) {
+           var img = document.getElementById(imageID);
+           var form = document.getElementById("formID");
+           img.src = newURL;
+           document.getElementById("divAdder" + imageID).innerHTML = "<input type='hidden' name='image[filepicker_url]' value='" + newURL + "'>";
+       },
+       onError: function(errorObj) {
+           alert(errorObj.message);
+       }
+   });
+   function launchEditor(id, src) {
+       featherEditor.launch({
+           image: id,
+           url: src
+       });
+      return false;
+   }
+</script>
+
+
 <div class="col-xs-6">
 	<br>
 	<br>
 	<br>
 	<h3>Images</h3>
 	<% @user.images.each do |image| %>
-		<img src="<%= image.url %>">
+
+		<img id="image<%= image.id %>" src="<%= image.filepicker_url %>">
+		<br>
+		<% if @current_user.id == @user.id %>
+
+
+
+			<div id='injection_site'></div>
+
+			<!-- Add an edit button, passing the HTML id of the image and the public URL of the image -->
+			<p><input type='image' src='http://images.aviary.com/images/edit-photo.png' value='Edit photo' onclick="return launchEditor('image<%= image.id %>', '<%= image.filepicker_url %>');" />
+				<form action="<%= image_url(image.id) %>" method="POST">
+					<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+					<input type="hidden" name="_method" value="patch">
+					<div id="divAdderimage<%= image.id %>"></div>
+					<input id="submitID" type="Submit" value="Save Changes">
+				</form></p>
+	
+		<% end %>
+		<br>
+
 	<% end %>
 </div>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>

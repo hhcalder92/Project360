@@ -47,6 +47,22 @@ class UsersController < ApplicationController
     logout!
     redirect_to root_url
   end
+
+  def edit
+    @user = current_user
+    render :edit
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if check_params[:password] != check_params[:password_dup]
+      flash.now[:errors] = "Passwords do not match"
+      render :edit
+      return
+    end
+    @user.update_attributes(attr_params)
+    redirect_to user_url(current_user)
+  end
   
   private
   def user_params
@@ -56,16 +72,10 @@ class UsersController < ApplicationController
   def check_params
     params.require(:user).permit(:name, :password, :password_dup, :email, :email_dup)
   end
-  
-  # def profile_params
-  #   # Apparently rails associates foreign key user_id automatically
-  #   params.require(:profile).permit(
-  #     :first_name,
-  #     :last_name,
-  #     :name_tag,
-  #     :bio
-  #   )
-  #end
+
+  def attr_params
+    params.require(:user).permit(:name, :email, :password, :bio);
+  end
   
 
 end
