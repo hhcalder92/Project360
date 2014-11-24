@@ -46,9 +46,11 @@ To Run Test
 ======================
 
 1. Type:
+
 ```sh
-‘rake db:migrate’
+rake db:migrate
 ```
+
 2. View test log
     * Example Log:
 	```sh
