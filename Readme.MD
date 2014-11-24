@@ -31,12 +31,14 @@ Ruby 2.0 or higher necessary.
 ```
 3. In your favorite browser:
 ```sh
-‘localhost:3000’
+localhost:3000
 ```
 	>it may be necessary to run command as login shell 'bin/rake db:migrate RAILS_ENV=development'
+	
 4. Enjoy the website! Login or create user. 
-5. To kill the server, in terminal 
-6. ```sh
+5. To kill the server, in terminal:
+
+```sh
 'ctrl+c'
 ```
 
