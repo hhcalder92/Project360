@@ -4,7 +4,6 @@ class ImagesController < ApplicationController
     if @image.save!
       redirect_to user_url(current_user)
     else
-      fail
       flash[:errors] = "Could not upload image."
     end
   end

@@ -5,7 +5,7 @@
 
 <% User.all.each do |user| %>
 	
-	<% if current_user.friendships.find_by_friend_id(user.id) == nil %>
+	<% if signed_in? && current_user.friendships.find_by_friend_id(user.id) == nil %>
 	
 	<a href="<%= user_url(user) %>"><%= user.name %></a>
 	<br>

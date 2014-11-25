@@ -37,10 +37,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @current_user = current_user
     if signed_in?
-    render :show
-  else
-    redirect new_user_url 
-  end
+      render :show
+    else
+      redirect new_user_url 
+    end
   end
   
   def destroy
@@ -62,6 +62,14 @@ class UsersController < ApplicationController
     end
     @user.update_attributes(attr_params)
     redirect_to user_url(current_user)
+  end
+
+  def index
+    unless signed_in?
+      redirect_to new_user_url
+    else
+      render :index
+    end
   end
   
   private
