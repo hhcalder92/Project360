@@ -20,22 +20,74 @@
 <h5>Bio: <%= @current_user.bio %></h5>
 
 
+<h3>Friends</h3>
 
-<%end%> 
+<% if @current_user.friendships.length != 0 %>
 
-<br>
-<br>
-<br><br>
-<br><br>
-<br>
-<br>
-<br>
+	<% @current_user.friendships.each do |friendship| %>
 
+		<% friend = User.find(friendship.friend_id) %>
+		<a href="<%= user_url(friend.id) %>">
+			<%= friend.name %>
+		</a>
+		<br>
+	<% end %>
+	
+<% else %>
+	
+	Its cool bro! 
+	
+<% end %>
+
+
+
+
+ <footer>
+  <p>This is a footer.</p>
+  
+</footer> 
 </div>
-</div>
-
 
 <div class="col-xs-9 right-panel">
 
+	<% friend_images = [] %>
+
+	<% @current_user.friendships.each do |friendship| %>
+
+		<% friend = User.find(friendship.friend_id) %>
+		<% friend.images.each { |image| friend_images << image } %>
+	
+	<% end %>
+
+	<% friend_images.sort_by(&:created_at) %>
+
+	<div class="feed-container">
+
+		<h1>Feed</h1>
+
+		<div class="photos">
+
+		<% friend_images.each do |image| %>
+
+			<% user = User.find(image.user_id) %>
+
+			<div class="photo">
+				<%= user.name %> - <%= image.created_at.strftime("%b %-d, %Y at %l:%M%P") %>
+				<img class="photo" src="<%= image.filepicker_url %>">
+			</div>		
+
+		<% end %>
+
+		</div>
+
+	</div>
+
 </div>
 
+
+</div>
+
+
+
+
+<%end%> 

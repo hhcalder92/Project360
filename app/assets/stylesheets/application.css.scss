@@ -17,7 +17,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-div.homepage {
+div.homepage {	
 	margin: 0 auto;
     font-family: "Courier New", Courier, monospace;
 	top: 60px;
@@ -61,7 +61,7 @@ body {
 	 border: 0.1px solid rgba(0, 0, 0, 0.3);
     /* background-image: url("https://raw.githubusercontent.com/CSE360Fall2014/ImageSpace-Django/master/image_space_app/static/img/photographer.jpg");
 	 */
-
+	 z-index: 1;
 	 }
 	 .navbar-header {
 	
@@ -70,3 +70,39 @@ body {
 	 box-shadow: inset 0 0 1em green-yellow;
 	 
 	 }
+
+
+div.feed-container {
+	padding-left: 60px;
+}
+
+div.photos {
+	margin-left: -2.5%;
+	margin-right: 2.5%;
+	width: 105%;
+	overflow-x: auto;
+	float: left;
+	display: flex;
+	flex-wrap: nowrap;
+}
+
+div.photo {
+	float: left;
+	background-color: #f2f2f2;
+	border-radius: 6px;
+	padding: 10px;
+	margin: 0px 8px;
+	min-width: 340px;
+	max-width: 400px;
+	display: inline-block;
+}
+
+
+img.photo {
+	max-width: 320px;
+	max-height: 320px;
+}
+
+.image_button {
+	display: inline-block;
+}

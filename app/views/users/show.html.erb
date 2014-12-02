@@ -113,22 +113,28 @@
 	<h3>Images</h3>
 	<% @user.images.each do |image| %>
 
-		<img id="image<%= image.id %>" src="<%= image.filepicker_url %>">
+		<div class="photo">
+			<img class="photo" id="image<%= image.id %>" src="<%= image.filepicker_url %>">
+		</div>
 		<br>
 		<% if @current_user.id == @user.id %>
-
 
 
 			<div id='injection_site'></div>
 
 			<!-- Add an edit button, passing the HTML id of the image and the public URL of the image -->
-			<p><input type='image' src='http://images.aviary.com/images/edit-photo.png' value='Edit photo' onclick="return launchEditor('image<%= image.id %>', '<%= image.filepicker_url %>');" />
+			<input type="submit" value='Edit photo' onclick="return launchEditor('image<%= image.id %>', '<%= image.filepicker_url %>');" />
+
+			<%= button_to "Delete photo", image_url(image.id), { method: :delete, form_class: "image_button delete" } %>
+
 				<form action="<%= image_url(image.id) %>" method="POST">
 					<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 					<input type="hidden" name="_method" value="patch">
 					<div id="divAdderimage<%= image.id %>"></div>
-					<input id="submitID" type="Submit" value="Save Changes">
-				</form></p>
+					<input class="image_button" id="submitID" type="Submit" value="Save Changes">
+				</form>
+			
+
 	
 		<% end %>
 		<br>
