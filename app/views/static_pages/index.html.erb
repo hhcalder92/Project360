@@ -3,22 +3,25 @@
 		
 <div class="homepage" >
 
-<div class="left-panel col-xs-3" >
-<!-- h1 class="homepage">Welcome to Project 360</h1> <-->
-<br>
+
 
 <% unless signed_in? %>
-
-	
+ <div id="fullscreen_bg" class="fullscreen_bg"/>
+	<%= image_tag("287.jpg")%>
 	
 <% else %>
 
+<div class="left-panel col-xs-3" >
+<!-- h1 class="homepage">Welcome to Project 360</h1> <-->
+<br>
 
 <h2>Yo <%= @current_user.name %>!</h2>
 
 <h5>Email: <%= @current_user.email %></h5>
 <h5>Bio: <%= @current_user.bio %></h5>
 
+<br>
+<br>
 
 <h3>Friends</h3>
 
@@ -62,9 +65,10 @@
 	<% friend_images.sort_by(&:created_at) %>
 
 	<div class="feed-container">
+		<br><br><br>
 
 		<h1>Feed</h1>
-
+		<br>
 		<div class="photos">
 
 		<% friend_images.each do |image| %>

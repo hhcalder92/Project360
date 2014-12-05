@@ -25,9 +25,25 @@ div.homepage {
 	
 }
 
+
+  .fullscreen_bg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-image: url('../images/287.jpg');
+    background-repeat:repeat;
+  }
+  
+  
+  
 div.left-panel {
 	box-shadow: 8px 0px 35px #BBB;
 	background-color: #ddffff;
+	height:735px;
 }
 
 div.right-panel {
@@ -106,3 +122,6 @@ img.photo {
 .image_button {
 	display: inline-block;
 }
+
+
+
